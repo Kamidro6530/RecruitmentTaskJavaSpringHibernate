@@ -1,5 +1,6 @@
-package com.example.dd.springapp.model;
+package com.example.dd.springapp.model.cart;
 
+import com.example.dd.springapp.model.product.Product;
 import jakarta.persistence.*;
 
 import java.util.List;

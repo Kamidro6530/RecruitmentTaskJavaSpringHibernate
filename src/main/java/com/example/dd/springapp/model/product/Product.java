@@ -1,4 +1,4 @@
-package com.example.dd.springapp.model;
+package com.example.dd.springapp.model.product;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
