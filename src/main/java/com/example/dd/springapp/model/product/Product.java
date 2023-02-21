@@ -10,9 +10,12 @@ import jakarta.validation.constraints.NotNull;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "product_id")
     private int id;
     @NotBlank(message = "Product title must not be empty")
+    @Column(name = "product_title")
     private String title;
+    @Column(name = "product_price")
     private double price;
 
 
