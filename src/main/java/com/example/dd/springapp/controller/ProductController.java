@@ -19,11 +19,13 @@ public class ProductController {
 
     @GetMapping(value = "/products",params = {"!sort","!page","!size"})
     ResponseEntity<?> readAllProducts(){
-        return ResponseEntity.ok(productRepository.findAll(PageRequest.ofSize(3)));
+        return ResponseEntity.ok(productRepository.findAll(PageRequest.ofSize(3)).getContent());
     }
 
     @GetMapping(value = "/products")
     ResponseEntity<?> readAllProductsPageable(Pageable page){
-         return ResponseEntity.ok(productRepository.findAll(PageRequest.of(page.getPageNumber(),3)));
+         return ResponseEntity.ok(productRepository.findAll(PageRequest.of(page.getPageNumber(),3)).getContent());
     }
+
+
 }
