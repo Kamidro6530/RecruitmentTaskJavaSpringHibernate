@@ -2,10 +2,16 @@ package com.example.dd.springapp.model.cart;
 
 import com.example.dd.springapp.model.product.Product;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "carts")
 public class Cart {
@@ -17,35 +23,6 @@ public class Cart {
     private String title;
     @ManyToMany(mappedBy = "carts", cascade = { CascadeType.ALL })
     private Set<Product> products = new HashSet<Product>();
-
-
-     Cart(){
-
-     }
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Set<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(Set<Product> products) {
-        this.products = products;
-    }
 
     public double getProductsPrice(){
          double pricesSum = 0;

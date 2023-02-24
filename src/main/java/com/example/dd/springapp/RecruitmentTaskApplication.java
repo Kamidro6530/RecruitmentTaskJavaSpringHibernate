@@ -9,16 +9,16 @@ import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 @SpringBootApplication
-public class ZadanieRekrutacyjneDanielDabrowskiApplication implements RepositoryRestConfigurer {
+public class RecruitmentTaskApplication implements RepositoryRestConfigurer {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ZadanieRekrutacyjneDanielDabrowskiApplication.class, args);
+		SpringApplication.run(RecruitmentTaskApplication.class, args);
 	}
 
 	@Override
 	public void configureValidatingRepositoryEventListener(ValidatingRepositoryEventListener validatingListener) {
-		validatingListener.addValidator("beforeCreate",validator());
-		validatingListener.addValidator("beforeSave",validator());
+		validatingListener.addValidator("beforeCreate", validator());
+		validatingListener.addValidator("beforeSave", validator());
 	}
 
 	@Bean
