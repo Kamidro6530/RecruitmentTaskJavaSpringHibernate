@@ -8,7 +8,4 @@ import java.util.List;
 
 @RepositoryRestResource
 public interface ProductRepository extends JpaRepository<Product,Integer> {
-
-
-
 }
