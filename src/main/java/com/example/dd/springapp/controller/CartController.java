@@ -7,6 +7,7 @@ import com.example.dd.springapp.model.product.ProductRepository;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +29,7 @@ public class CartController {
         return ResponseEntity.ok(cartRepository.findAll());
     }
 
-    @PostMapping(value = "/carts/{cart_id}/{product_id}")
+    @PostMapping(value = "/carts/{cart_id}/products/{product_id}")
     ResponseEntity<Cart> addProductToCart(@PathVariable("cart_id") int cart_id,@PathVariable("product_id") int product_id){
         Cart cart = cartRepository.findById(cart_id).orElseThrow(()-> new ResourceNotFoundException("Not found Cart with id "+cart_id));
         Product product = productRepository.findById(product_id).orElseThrow(()-> new ResourceNotFoundException("Not found Product with id "+product_id));
@@ -36,4 +37,15 @@ public class CartController {
         productRepository.save(product);
         return ResponseEntity.ok(cart);
     }
+
+
+    @DeleteMapping(value = "/carts/{cart_id}/products/{product_id}")
+    ResponseEntity<Cart> removeProductFromCart(@PathVariable("cart_id") int cart_id,@PathVariable("product_id") int product_id){
+        Cart cart = cartRepository.findById(cart_id).orElseThrow(()-> new ResourceNotFoundException("Not found Cart with id "+cart_id));
+        Product product = productRepository.findById(product_id).orElseThrow(()-> new ResourceNotFoundException("Not found Product with id "+product_id));
+        product.removeCart(cart);
+        productRepository.save(product);
+        return ResponseEntity.ok(cart);
+    }
+
 }

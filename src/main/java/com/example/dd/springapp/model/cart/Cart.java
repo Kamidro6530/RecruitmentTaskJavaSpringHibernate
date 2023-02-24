@@ -21,7 +21,6 @@ public class Cart {
     @Column(name = "cart_title")
     private String title;
     @ManyToMany(mappedBy = "carts", cascade = { CascadeType.ALL })
-    @JsonIgnore
     private Set<Product> products = new HashSet<Product>();
 
 

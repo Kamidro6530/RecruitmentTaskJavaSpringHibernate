@@ -3,6 +3,7 @@ package com.example.dd.springapp.model.product;
 import com.example.dd.springapp.model.cart.Cart;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -36,6 +37,7 @@ public class Product {
                     @JoinColumn(name = "cart_id")
             }
     )
+    @JsonIgnore
     Set< Cart > carts = new HashSet< Cart >();
 
 
