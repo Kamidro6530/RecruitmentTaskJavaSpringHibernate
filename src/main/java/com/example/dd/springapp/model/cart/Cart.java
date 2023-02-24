@@ -1,14 +1,9 @@
 package com.example.dd.springapp.model.cart;
 
 import com.example.dd.springapp.model.product.Product;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -50,5 +45,13 @@ public class Cart {
 
     public void setProducts(Set<Product> products) {
         this.products = products;
+    }
+
+    public double getProductsPrice(){
+         double pricesSum = 0;
+        for (Product x : products){
+            pricesSum += x.getPrice();
+        }
+        return pricesSum;
     }
 }
