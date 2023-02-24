@@ -1,7 +1,10 @@
 package com.example.dd.springapp.model.cart;
 
 import com.example.dd.springapp.model.product.Product;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -17,8 +20,8 @@ public class Cart {
     private int id;
     @Column(name = "cart_title")
     private String title;
-    @JsonManagedReference
     @ManyToMany(mappedBy = "carts", cascade = { CascadeType.ALL })
+    @JsonIgnore
     private Set<Product> products = new HashSet<Product>();
 
 

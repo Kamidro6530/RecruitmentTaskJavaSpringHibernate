@@ -2,6 +2,8 @@ package com.example.dd.springapp.model.product;
 
 import com.example.dd.springapp.model.cart.Cart;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -22,7 +24,6 @@ public class Product {
     private String title;
     @Column(name = "product_price")
     private double price;
-    @JsonBackReference
     @ManyToMany(cascade = {
             CascadeType.ALL
     })
