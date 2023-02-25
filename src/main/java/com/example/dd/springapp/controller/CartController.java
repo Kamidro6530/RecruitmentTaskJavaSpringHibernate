@@ -26,11 +26,11 @@ public class CartController {
     }
 
     Cart findCartByIdOrThrowError(int cart_id) {
-        return cartRepository.findById(cart_id).orElseThrow(() -> new ResourceNotFoundException("Not found Cart with id " + cart_id));
+        return cartRepository.findById(cart_id).orElseThrow(() -> new IllegalArgumentException("Not found Cart with id " + cart_id));
     }
 
     Product findProductByIdOrThrowError(int product_id) {
-        return productRepository.findById(product_id).orElseThrow(() -> new ResourceNotFoundException("Not found Product with id " + product_id));
+        return productRepository.findById(product_id).orElseThrow(() -> new IllegalArgumentException("Not found Product with id " + product_id));
     }
 
     @GetMapping(value = "/carts", params = {"!sort", "!page", "!size"})
@@ -67,7 +67,7 @@ public class CartController {
 
     @GetMapping(value = "/carts/{cart_id}/products")
     ResponseEntity<?> getProductsFromCart(@PathVariable("cart_id") int cart_id) {
-        Cart cart = cartRepository.findById(cart_id).orElseThrow(() -> new ResourceNotFoundException("Not found Cart with id " + cart_id));
+        Cart cart = cartRepository.findById(cart_id).orElseThrow(() -> new IllegalArgumentException("Not found Cart with id " + cart_id));
         return ResponseEntity.ok(cart);
     }
 
